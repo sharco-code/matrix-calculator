@@ -60,7 +60,7 @@ int main(void) {
             default:
                 std::cout << "Incorrect option";
         }
-    } while (menu != 1/* || menu != 2 || menu != 3 */);
+    } while (menu != 1/* && menu != 2 && menu != 3 */);
 
     //show results
     if (is_operative) {
