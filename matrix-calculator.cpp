@@ -15,7 +15,11 @@ void *add(int a[][2], int b[][2]) {
 void *substract(int a[][2], int b[][2]) {
     int (*res)[2] = new int[2][2];
 
-    std::cout << "comming soon.." << std::endl;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            res[i][j] = a[i][j] - b[i][j];
+        }    
+    }
 
     return res;
 }
@@ -44,17 +48,14 @@ void *multiply(int a[][2], int b[][2]) {
     return res;
 }
 
-void print(int result[][2], bool x) {
+void print(int result[][2]) {
     
-    //show results
-    if (x) {
-        std::cout << "\nResult " << std::endl;
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                std::cout << " " << result[i][j];
-            }    
-            std::cout << std::endl;
-        }
+    std::cout << "\nResult " << std::endl;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            std::cout << " " << result[i][j];
+        }    
+        std::cout << std::endl;
     }
 
 }
@@ -65,7 +66,6 @@ int main(void) {
     int (*c)[2] = new int[2][2];
     char turn[2] = {'a', 'b'};
     int menu;
-    bool is_operative;
 
     for (int x = 0; x < 2; x++) {
         std::cout << "Matrix " << turn[x] << std::endl;
@@ -99,22 +99,20 @@ int main(void) {
         std::cin >> menu;
         switch (menu) {
             case 1:
-                is_operative = true;
                 c = (int (*)[2]) add(a, b);
                 break;
             case 2:
-                is_operative = false;
-                std::cout << "Comming soon.." << std::endl;
+                c = (int (*)[2]) substract(a, b);
                 break;
             case 3:
-                is_operative = true;
                 c = (int (*)[2]) multiply(a, b);
                 break;
             default:
                 std::cout << "Incorrect option";
         }
     } while (menu < 1 || menu > 3);
-    print(c, is_operative);
+
+    print(c);
 
     return 0;
 }
